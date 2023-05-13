@@ -30,7 +30,7 @@
     @include('layouts.partials.navbar')
 
     {{-- Conteúdo da aplicação --}}
-    <main class="container">
+    <main class="container p-5">
         @yield('content')
     </main>
 
