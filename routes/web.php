@@ -40,7 +40,18 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
     Route::group(['middleware' => ['auth']], function () {
         /**
-         * Logout Routes
+         * Temas rotas
+         */
+        Route::get('/temas', 'TemasController@index')->name('temas.index');
+        Route::get('/temas/create', 'TemasController@create')->name('temas.create');
+        Route::get('/temas/{tema}', 'TemasController@show')->name('temas.show');
+        Route::post('/temas', 'TemasController@store')->name('temas.store');
+        Route::get('temas/edit/{tema}', 'TemasController@edit')->name('temas.edit');
+        Route::put('/temas/{tema}', 'TemasController@update')->name('temas.update');
+        Route::delete('/temas/{tema}', 'TemasController@destroy')->name('temas.destroy');
+
+        /**
+         * Logout Route
          */
         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
     });

@@ -36,17 +36,20 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ route('home.index') }}">Home</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('temas.index') }}">Temas</a>
+                    </li>
                 </ul>
             </div>
 
             {{-- Dropdown --}}
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavRight">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{auth()->user()->name}}
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="{{ route('logout.perform') }}">Sair</a></li>
                         </ul>
                     </li>
