@@ -1,35 +1,57 @@
-<header class="p-3 bg-dark text-white">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
-        </a>
+{{-- Navbar para usuários visitantes --}}
+@guest
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            {{-- Links --}}
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ route('home.index') }}">Home</a>
+                    </li>
+                </ul>
+            </div>
 
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-        </ul>
+            {{-- Links de autenticação --}}
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login.perform') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register.perform') }}">Registro</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+@endguest
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-        </form>
+{{-- Navbar para usuários logados --}}
+@auth
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            {{-- Links --}}
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('home.index') }}">Home</a>
+                    </li>
+                </ul>
+            </div>
 
-        @auth
-          {{auth()->user()->name}}
-          <div class="text-end">
-            <a href="{{ route('logout.perform') }}" class="btn btn-outline-light me-2">Logout</a>
-          </div>
-        @endauth
-
-        @guest
-          <div class="text-end">
-            <a href="{{ route('login.perform') }}" class="btn btn-outline-light me-2">Login</a>
-            <a href="{{ route('register.perform') }}" class="btn btn-warning">Sign-up</a>
-          </div>
-        @endguest
-      </div>
-    </div>
-  </header>
+            {{-- Dropdown --}}
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{auth()->user()->name}}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{{ route('logout.perform') }}">Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+@endauth

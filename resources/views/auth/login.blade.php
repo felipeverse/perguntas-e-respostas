@@ -28,6 +28,8 @@
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
 
+        <a class="w-100 mt-2 btn btn-lg btn-light" href="{{ route('register.perform') }}">Registrar</a>
+
         @include('auth.partials.copy')
     </form>
 @endsection
