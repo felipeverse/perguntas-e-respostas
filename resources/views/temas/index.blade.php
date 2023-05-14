@@ -26,13 +26,13 @@
                                     <td>{{ $tema->id }}</td>
                                     <td>{{ $tema->titulo }}</td>
                                     <td class="text-end">
-                                        <a href="{{ route('temas.show', $tema->id) }}" class="btn btn-info text-white">Visualizar</a>
-                                        <a href="{{ route('temas.edit',$tema->id) }}" class="btn btn-success">Editar</a>
+                                        <a href="{{ route('temas.show', $tema->id) }}" class="btn btn-primary text-white"><i class="bi bi-eye"></i></a>
+                                        <a href="{{ route('temas.edit',$tema->id) }}" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
                                         <form method="POST" action="{{ route('temas.destroy', $tema->id) }}" class="form d-inline-block" title="Exluir">
                                             @csrf
                                             @method('post')
                                             <input type="hidden" name="_method" value="DELETE">
-                                            <button type="submit" class="btn btn-danger" title="Excluir" onclick="return confirm('Tem certeza que deseja excluir o tema?')" >Excluir</button>
+                                            <button type="submit" class="btn btn-danger" title="Excluir" onclick="return confirm('Tem certeza que deseja excluir o tema?')" ><i class="bi bi-trash"></i></button>
                                         </form>
                                     </td>
                                 </tr>
