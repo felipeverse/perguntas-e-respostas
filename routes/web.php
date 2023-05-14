@@ -51,6 +51,17 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::delete('/temas/{tema}', 'TemasController@destroy')->name('temas.destroy');
 
         /**
+         * Niveis rotas
+         */
+        Route::get('/niveis', 'NiveisController@index')->name('niveis.index');
+        Route::get('/niveis/create', 'NiveisController@create')->name('niveis.create');
+        Route::get('/niveis/{nivel}', 'NiveisController@show')->name('niveis.show');
+        Route::post('/niveis', 'NiveisController@store')->name('niveis.store');
+        Route::get('/niveis/edit/{nivel}', 'NiveisController@edit')->name('niveis.edit');
+        Route::put('/niveis/{nivel}', 'NiveisController@update')->name('niveis.update');
+        Route::delete('/niveis/{nivel}', 'NiveisController@destroy')->name('niveis.destroy');
+
+        /**
          * Logout Route
          */
         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');

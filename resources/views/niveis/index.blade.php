@@ -5,8 +5,8 @@
     <div class="container mt-5">
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                Temas
-                <a href="{{ route('temas.create') }}" class="btn btn-primary">Novo</a>
+                Niveis
+                <a href="{{ route('niveis.create') }}" class="btn btn-primary">Novo</a>
             </div>
             <div class="card-body">
                 @include('layouts.partials.messages')
@@ -21,18 +21,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($temas as $key => $tema)
+                            @foreach($niveis as $key => $nivel)
                                 <tr>
-                                    <td>{{ $tema->id }}</td>
-                                    <td>{{ $tema->titulo }}</td>
+                                    <td>{{ $nivel->id }}</td>
+                                    <td>{{ $nivel->titulo }}</td>
                                     <td class="text-end">
-                                        <a href="{{ route('temas.show', $tema->id) }}" class="btn btn-primary text-white"><i class="bi bi-eye"></i></a>
-                                        <a href="{{ route('temas.edit',$tema->id) }}" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
-                                        <form method="POST" action="{{ route('temas.destroy', $tema->id) }}" class="form d-inline-block" title="Exluir">
+                                        <a href="{{ route('niveis.show', $nivel->id) }}" class="btn btn-primary text-white"><i class="bi bi-eye"></i></a>
+                                        <a href="{{ route('niveis.edit', $nivel->id) }}" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+                                        <form method="POST" action="{{ route('niveis.destroy', $nivel->id) }}" class="form d-inline-block" title="Exluir">
                                             @csrf
                                             @method('post')
                                             <input type="hidden" name="_method" value="DELETE">
-                                            <button type="submit" class="btn btn-danger" title="Excluir" onclick="return confirm('Tem certeza que deseja excluir o tema?')" ><i class="bi bi-trash"></i></button>
+                                            <button type="submit" class="btn btn-danger" title="Excluir" onclick="return confirm('Tem certeza que deseja excluir o nível?')" ><i class="bi bi-trash"></i></button>
                                         </form>
                                     </td>
                                 </tr>

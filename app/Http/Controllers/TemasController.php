@@ -20,18 +20,6 @@ class TemasController extends Controller
     }
 
     /**
-     * Mostra os detalhes do tema
-     *
-     * @param  \App\Models\Tema $tema
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Tema $tema)
-    {
-         return view('temas.show', compact('tema'));
-    }
-
-    /**
      * Mostra o formulário de criação de um novo tema
      *
      * @return \Illuminate\Http\Response
@@ -39,18 +27,6 @@ class TemasController extends Controller
     public function create()
     {
         return view('temas.create');
-    }
-
-    /**
-     * Mostra o formulário de edição do tema
-     *
-     * @param  \App\Models\Tema  $tema
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Tema $tema)
-    {
-        return view('temas.edit', compact('tema'));
     }
 
     /**
@@ -71,6 +47,30 @@ class TemasController extends Controller
         ]);
 
         return redirect()->route('temas.index')->with('success', 'Tema criado com sucesso!');
+    }
+
+    /**
+     * Mostra o formulário de edição do tema
+     *
+     * @param  \App\Models\Tema  $tema
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Tema $tema)
+    {
+        return view('temas.edit', compact('tema'));
+    }
+
+    /**
+     * Mostra os detalhes do tema
+     *
+     * @param  \App\Models\Tema $tema
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Tema $tema)
+    {
+         return view('temas.show', compact('tema'));
     }
 
     /**

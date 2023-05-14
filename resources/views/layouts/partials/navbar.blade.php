@@ -46,6 +46,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ route('temas.index') }}">Temas</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('niveis.index') }}">Niveis</a>
+                    </li>
                 </ul>
             </div>
 
