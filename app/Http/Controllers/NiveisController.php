@@ -70,7 +70,7 @@ class NiveisController extends Controller
      */
     public function show(Nivel $nivel)
     {
-         return view('niveis.show', compact('nivel'));
+        return view('niveis.show', compact('nivel'));
     }
 
     /**

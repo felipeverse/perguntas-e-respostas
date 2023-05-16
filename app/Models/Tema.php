@@ -15,4 +15,12 @@ class Tema extends Model
      * @var array
      */
     protected $fillable = ['titulo'];
+
+    /**
+     * Perguntas relacionadas ao tema
+     */
+    public function perguntas()
+    {
+        return $this->hasMany(Pergunta::class);
+    }
 }

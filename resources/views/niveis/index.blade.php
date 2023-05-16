@@ -26,13 +26,13 @@
                                     <td>{{ $nivel->id }}</td>
                                     <td>{{ $nivel->titulo }}</td>
                                     <td class="text-end">
-                                        <a href="{{ route('niveis.show', $nivel->id) }}" class="btn btn-primary text-white"><i class="bi bi-eye"></i></a>
-                                        <a href="{{ route('niveis.edit', $nivel->id) }}" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+                                        <a href="{{ route('niveis.show', $nivel->id) }}" class="btn btn-primary text-white bi bi-eye"></a>
+                                        <a href="{{ route('niveis.edit', $nivel->id) }}" class="btn btn-success bi bi-pencil-square"></a>
                                         <form method="POST" action="{{ route('niveis.destroy', $nivel->id) }}" class="form d-inline-block" title="Exluir">
                                             @csrf
                                             @method('post')
                                             <input type="hidden" name="_method" value="DELETE">
-                                            <button type="submit" class="btn btn-danger" title="Excluir" onclick="return confirm('Tem certeza que deseja excluir o nível?')" ><i class="bi bi-trash"></i></button>
+                                            <button type="submit" class="btn btn-danger bi bi-trash" title="Excluir" onclick="return confirm('Tem certeza que deseja excluir o nível?')" ></button>
                                         </form>
                                     </td>
                                 </tr>

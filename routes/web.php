@@ -62,6 +62,17 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::delete('/niveis/{nivel}', 'NiveisController@destroy')->name('niveis.destroy');
 
         /**
+         * Perguntas rotas
+         */
+        Route::get('/perguntas', 'PerguntasController@index')->name('perguntas.index');
+        Route::get('/perguntas/create', 'PerguntasController@create')->name('perguntas.create');
+        Route::get('perguntas/show/{pergunta}', 'PerguntasController@show')->name('perguntas.show');
+        Route::post('/perguntas', 'PerguntasController@store')->name('perguntas.store');
+        Route::get('/perguntas/edit/{pergunta}', 'PerguntasController@edit')->name('perguntas.edit');
+        Route::put('/perguntas/{pergunta}', 'PerguntasController@update')->name('perguntas.update');
+        Route::delete('/perguntas/{pergunta}', 'PerguntasController@destroy')->name('perguntas.destroy');
+
+        /**
          * Logout Route
          */
         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
