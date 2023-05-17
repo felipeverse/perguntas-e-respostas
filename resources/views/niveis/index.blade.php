@@ -17,6 +17,7 @@
                                 <tr>
                                     <th scope="col">Id</th>
                                     <th scope="col">Título</th>
+                                    <th scope="col" class="text-end">Perguntas</th>
                                     <th scope="col" class="text-end">Ações</th>
                                 </tr>
                             </thead>
@@ -25,6 +26,7 @@
                                 <tr>
                                     <td>{{ $nivel->id }}</td>
                                     <td>{{ $nivel->titulo }}</td>
+                                    <td class="text-end">{{ $nivel->perguntas()->count() }}</td>
                                     <td class="text-end">
                                         <a href="{{ route('niveis.show', $nivel->id) }}" class="btn btn-primary text-white bi bi-eye"></a>
                                         <a href="{{ route('niveis.edit', $nivel->id) }}" class="btn btn-success bi bi-pencil-square"></a>

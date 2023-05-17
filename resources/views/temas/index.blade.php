@@ -17,6 +17,7 @@
                                 <tr>
                                     <th scope="col">Id</th>
                                     <th scope="col">Título</th>
+                                    <th scope="col" class="text-end">Perguntas</th>
                                     <th scope="col" class="text-end">Ações</th>
                                 </tr>
                             </thead>
@@ -25,6 +26,7 @@
                                 <tr>
                                     <td>{{ $tema->id }}</td>
                                     <td>{{ $tema->titulo }}</td>
+                                    <td class="text-end">{{ $tema->perguntas()->count() }}</td>
                                     <td class="text-end">
                                         <a href="{{ route('temas.show', $tema->id) }}" class="btn btn-primary text-white"><i class="bi bi-eye"></i></a>
                                         <a href="{{ route('temas.edit',$tema->id) }}" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
