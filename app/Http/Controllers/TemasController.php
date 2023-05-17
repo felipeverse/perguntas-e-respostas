@@ -103,6 +103,11 @@ class TemasController extends Controller
      */
     public function destroy(Tema $tema)
     {
+        if ($tema->perguntas()->count()) {
+            return redirect()->route('temas.index')
+                ->withErrors(['erro' => 'Exclusão não permitida: tema vinculado à perguntas.']);
+        }
+
         $tema->delete();
 
         return redirect()->route('temas.index')

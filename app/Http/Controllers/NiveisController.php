@@ -103,6 +103,11 @@ class NiveisController extends Controller
      */
     public function destroy(Nivel $nivel)
     {
+        if ($nivel->perguntas()->count()) {
+            return redirect()->route('temas.index')
+                ->withErrors(['erro' => 'Exclusão não permitida: tema vinculado à perguntas.']);
+        }
+
         $nivel->delete();
 
         return redirect()->route('niveis.index')
