@@ -16,7 +16,6 @@ class CreateGincanaFasesTable extends Migration
         Schema::create('gincana_fases', function (Blueprint $table) {
             $table->id();
             $table->integer('ordem');
-            $table->enum('tipo_pergunta', ['DISCURSIVA', 'OBJETIVA']);
             $table->integer('pontuacao_erro');
             $table->integer('pontuacao_parcial');
             $table->integer('pontuacao_acerto');

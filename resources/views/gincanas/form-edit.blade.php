@@ -64,7 +64,6 @@
                 <tr>
                     <th scope="col" title="Ordem">Ordem</th>
                     <th scope="col" title="Título">Nível</th>
-                    <th class="text-end" scope="col" title="Tipo das perguntas dessa fase">Tipo</th>
                     <th class="text-end" scope="col" title="Pontuação em erro">PE</th>
                     <th class="text-end" scope="col" title="Pontuação em acerto parcial">PP</th>
                     <th class="text-end" scope="col" title="Pontuação em acerto">PA</th>
@@ -76,7 +75,6 @@
                     <tr>
                         <td class="align-middle" scope="col">#{{ $fase->ordem }}</td>
                         <td class="align-middle" scope="col">{{ $fase->nivel->titulo }}</td>
-                        <td class="text-end align-middle" scope="col" >{{ $fase->tipo_pergunta }}</td>
                         <td class="text-end align-middle" scope="col">{{ $fase->pontuacao_erro }}</td>
                         <td class="text-end align-middle" scope="col">{{ $fase->pontuacao_parcial }}</td>
                         <td class="text-end align-middle" scope="col">{{ $fase->pontuacao_acerto }}</td>

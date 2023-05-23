@@ -22,30 +22,19 @@
         @endforeach
     </div>
 
-    {{-- Tipo --}}
-    <label for="tipo_pergunta" class="form-label">Tipo das perguntas</label>
-    <select class="form-select mb-3" class="form-select mb-3" name="tipo_pergunta" required>
-        <option value="tipo_pergunta" selected>Selecione uma opção</option>
-        @foreach ($tipos as $tipo)
-            <option value="{{ $tipo }}">
-                {{ $tipo }}
-            </option>
-        @endforeach
-    </select>
-
     {{-- Pontuações da fase --}}
     <div class="row mb-3">
         <div class="col">
             <label for="pontuacao_erro" title="Pontuação em caso de erro" class="form-label">Pontuação Erro:</label>
-            <input type="number" class="form-control" min="0" max="100" step="10" value="0" name="pontuacao_erro" required>
+            <input type="number" class="form-control" min="0" max="100" step="1" value="0" name="pontuacao_erro" required>
         </div>
         <div class="col">
             <label for="pontuacao_parcial" title="Pontuação em parcial" class="form-label">Pontuação parcial:</label>
-            <input type="number" class="form-control" min="0" max="100" step="10" value="50" name="pontuacao_parcial" required>
+            <input type="number" class="form-control" min="0" max="100" step="1" value="50" name="pontuacao_parcial" required>
         </div>
         <div class="col">
             <label for="pontuacao_acerto" title="Pontuação em caso de acerto" class="form-label">Pontuação acerto:</label>
-            <input type="number" class="form-control" min="0" max="100" step="10" value="100" name="pontuacao_acerto" required>
+            <input type="number" class="form-control" min="0" max="100" step="1" value="100" name="pontuacao_acerto" required>
         </div>
     </div>
 

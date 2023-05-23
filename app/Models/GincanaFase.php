@@ -18,7 +18,6 @@ class GincanaFase extends Model
      */
     protected $fillable = [
         'ordem',
-        'tipo',
         'pontuacao_erro',
         'pontuacao_parcial',
         'pontuacao_acerto',
