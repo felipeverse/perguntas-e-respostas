@@ -13,12 +13,12 @@
     {{-- Nível --}}
     <label for="nivel" class="form-label">Nível</label>
     <select class="form-select mb-3" id="nivel" name="nivel" required>
-    <option value="" selected>Selecione um nível</option>
-    @foreach ($niveis as $nivel)
-        <option value="{{ $nivel->id }}" {{ isset($pergunta) && $pergunta->nivel->id == $nivel->id ? 'selected' : '' }}>
-            {{ $nivel->titulo }}
-        </option>
-    @endforeach
+        <option value="" selected>Selecione um nível</option>
+        @foreach ($niveis as $nivel)
+            <option value="{{ $nivel->id }}" {{ isset($pergunta) && $pergunta->nivel->id == $nivel->id ? 'selected' : '' }}>
+                {{ $nivel->titulo }}
+            </option>
+        @endforeach
     </select>
 
     {{-- Tema --}}

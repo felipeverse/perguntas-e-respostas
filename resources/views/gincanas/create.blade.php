@@ -7,14 +7,13 @@
 
         <div class="card">
             <div class="card-header">
-                Editar tema
+                Nova gincana
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <form method="POST" action="{{ route('temas.update', $tema->id) }}">
-                            {{ method_field('PUT') }}
-                            @include('temas.form',['buttonText' => 'Salvar'])
+                        <form method="POST" action="{{ route('gincanas.store') }}">
+                            @include('gincanas.form-create', ['buttonText' => 'Salvar'])
                         </form>
                     </div>
                 </div>
