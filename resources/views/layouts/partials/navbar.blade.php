@@ -52,6 +52,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ route('perguntas.index') }}">Perguntas</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('gincanas.index') }}">Gincanas</a>
+                    </li>
                 </ul>
             </div>
 

@@ -3,6 +3,8 @@
 @section('content')
 
     <div class="container mt-5">
+        @include('layouts.partials.messages')
+
         <div class="card">
             <div class="card-header">
                 Novo nível
@@ -11,7 +13,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <form method="POST" action="{{ route('niveis.store') }}">
-                            @include('niveis.form',['buttonText' => 'Salvar'])
+                            @include('niveis.form', ['buttonText' => 'Salvar'])
                         </form>
                     </div>
                 </div>

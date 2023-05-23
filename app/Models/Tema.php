@@ -23,4 +23,9 @@ class Tema extends Model
     {
         return $this->hasMany(Pergunta::class);
     }
+
+    public function fases()
+    {
+        return $this->belongsToMany(GincanaFase::class, 'gincana_fase_temas');
+    }
 }

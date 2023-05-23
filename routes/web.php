@@ -73,6 +73,29 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::delete('/perguntas/{pergunta}', 'PerguntasController@destroy')->name('perguntas.destroy');
 
         /**
+         * Gincana rotas
+         */
+        Route::group(['prefix' => 'gincanas', 'as' => 'gincanas.'], function () {
+            // Gincanas
+            Route::get('/', 'GincanasController@index')->name('index');
+            Route::get('/create', 'GincanasController@create')->name('create');
+            Route::post('/gincanas', 'GincanasController@store')->name('store');
+            Route::get('/edit/{gincana}', 'GincanasController@edit')->name('edit');
+            Route::put('/{gincana}', 'GincanasController@update')->name('update');
+            Route::delete('/{gincana}', 'GincanasController@destroy')->name('destroy');
+
+            // Grupos
+            Route::get('/grupos/create/{gincana}', 'GincanaGruposController@create')->name('grupos.create');
+            Route::post('/grupos/{gincana}', 'GincanaGruposController@store')->name('grupos.store');
+            Route::get('/grupos/delete/{gincanaGrupo}', 'GincanaGruposController@destroy')->name('grupos.destroy');
+
+            // Fases
+            Route::get('/fases/create/{gincana}', 'GincanaFasesController@create')->name('fases.create');
+            Route::post('/fases/{gincana}', 'GincanaFasesController@store')->name('fases.store');
+            Route::get('/fases/delete/{gincanaFase}', 'GincanaFasesController@destroy')->name('fases.destroy');
+        });
+
+        /**
          * Logout Route
          */
         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
