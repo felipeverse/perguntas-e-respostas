@@ -7,8 +7,6 @@ use App\Models\Resposta;
 use App\Models\Nivel;
 use App\Models\Tema;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WhithoutModelEvent;
-
 class PerguntasSeeder extends Seeder
 {
     /**
