@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tema;
+use App\Models\Nivel;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class TemasController extends Controller
 {
@@ -112,5 +115,23 @@ class TemasController extends Controller
 
         return redirect()->route('temas.index')
             ->with('success', 'Tema excluído com sucesso!');
+    }
+
+    public function temasPartialView(Nivel $nivel)
+    {
+        try {
+            DB::beginTransaction();
+
+            $temas = Tema::whereIn('id', $nivel->perguntas->pluck('tema_id')->toArray())->get();
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            $errorMessage = 'Erro na chamada ajax.';
+            return response()->json(['error' => $errorMessage], Response::HTTP_BAD_REQUEST);
+        }
+
+        return view('gincanas.fases.partials.temas', compact('temas'));
     }
 }

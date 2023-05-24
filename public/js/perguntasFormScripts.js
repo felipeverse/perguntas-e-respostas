@@ -1,4 +1,4 @@
-// Tratamento para mudar estilo de respotas com base no tipo da pergunta
+// Tratamento para mudar estilo de respostas com base no tipo da pergunta
 var select = document.getElementById("tipo");
 var discursiveOptions = document.getElementById("opcoes-perguntas-discursivas");
 var objectiveOptions = document.getElementById("opcoes-perguntas-objetivas");

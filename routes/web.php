@@ -49,6 +49,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('temas/edit/{tema}', 'TemasController@edit')->name('temas.edit');
         Route::put('/temas/{tema}', 'TemasController@update')->name('temas.update');
         Route::delete('/temas/{tema}', 'TemasController@destroy')->name('temas.destroy');
+        Route::get('/temas-por-nivel-partial-view/{nivel}', 'TemasController@temasPartialView')->name('temas-por-nivel-partial-view');
 
         /**
          * Niveis rotas

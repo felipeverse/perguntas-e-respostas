@@ -13,13 +13,7 @@
 
     {{-- Temas --}}
     <label for="tema" class="form-label">Temas</label>
-    <div class="form-group mb-3">
-        @foreach ($temas as $tema)
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="{{ $tema->id }}" name="temas[]">
-                <label class="form-check-label" for="tema{{ $tema->id }}">{{ $tema->titulo }}</label>
-            </div>
-        @endforeach
+    <div class="form-group mb-4" id="fase-temas">
     </div>
 
     {{-- Pontuações da fase --}}
@@ -41,7 +35,17 @@
     {{-- Quantidade de perguntas por grupos --}}
     <div class="mb-3">
         <label for="perguntas_por_grupo" class="form-label">Perguntas por grupo:</label>
-        <input type="number" class="form-control" min="0" max="10" step="1" value="1" name="perguntas_por_grupo" required>
+        <input
+            type="number"
+            class="form-control"
+            min="0"
+            max="10"
+            step="1"
+            value=""
+            name="perguntas_por_grupo" required
+            placeholder="Digite a quantidade de perguntas por grupo"
+            oninput="validarInput(this)"
+        >
     </div>
 
     {{-- Selecionar tema manualmente antes de cada jogada --}}
