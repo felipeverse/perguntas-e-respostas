@@ -55,6 +55,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ route('gincanas.index') }}">Gincanas</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('partidas.index') }}">Partidas</a>
+                    </li>
                 </ul>
             </div>
 

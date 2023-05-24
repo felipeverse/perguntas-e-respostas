@@ -97,6 +97,16 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         });
 
         /**
+         * Partidas rotas
+         */
+        Route::group(['prefix' => 'partidas', 'as' => 'partidas.'], function () {
+            Route::get('/', 'PartidasController@index')->name('index');
+            Route::get('create', 'PartidasController@create')->name('create');
+            Route::get('play/{partida}', 'PartidasController@play')->name('play');
+            Route::post('store', 'PartidasController@store')->name('store');
+        });
+
+        /**
          * Logout Route
          */
         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');

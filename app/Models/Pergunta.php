@@ -47,4 +47,19 @@ class Pergunta extends Model
     {
         return $this->hasMany(Resposta::class);
     }
+
+    public function perguntaAleatoriaPorFase(GincanaFase $fase, $temaSelecionadoPreviamente = null)
+    {
+        if (is_null($temaSelecionadoPreviamente)) {
+            return self::where('nivel_id', $fase->nivel_id)
+                ->whereIn('tema_id', $fase->temas->pluck('id'))
+                ->get()
+                ->random();
+        }
+
+        return self::where('nivel_id', $fase->nivel_id)
+            ->where('tema_id', $temaSelecionadoPreviamente)
+            ->get()
+            ->random();
+    }
 }

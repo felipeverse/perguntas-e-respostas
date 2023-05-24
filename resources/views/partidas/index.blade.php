@@ -1,11 +1,14 @@
-@extends('layouts.app');
+@extends('layouts.app')
 
 @section('content')
-    <div class="containter mt-5">
+
+    <div class="container mt-5">
+        @include('layouts.partials.messages')
+
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                Gincanas
-                <a href="{{ route('gincanas.create') }}" class="btn btn-primary">Nova</a>
+                Partidas
+                <a href="{{ route('partidas.create') }}" class="btn btn-primary">Nova</a>
             </div>
             <div class="card-body">
                 @include('layouts.partials.messages')
@@ -16,19 +19,20 @@
                                 <tr>
                                     <th scope="col">Id</th>
                                     <th scope="col">Título</th>
+                                    <th scope="col" class="text-end">Status</th>
                                     <th scope="col" class="text-end">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($gincanas as $key => $gincana)
+                            @foreach($partidas as $key => $partida)
                                 <tr>
-                                    <td>{{ $gincana->id }}</td>
-                                    <td>{{ $gincana->titulo }}</td>
+                                    <td>{{ $partida->id }}</td>
+                                    <td>{{ $partida->titulo }}</td>
+                                    <td class="text-end">{{ $partida->status }}</td>
                                     <td class="text-end">
-                                        <a href="{{ route('partidas.create') }}" class="btn btn-info bi bi-play text-light"></a>
-                                        {{-- <a href="" class="btn btn-primary text-white bi bi-eye"></a> --}}
-                                        <a href="{{ route('gincanas.edit', $gincana->id) }}" class="btn btn-success bi bi-pencil-square" title="Editar"></a>
-                                        <form method="POST" action="{{ route('gincanas.destroy', $gincana->id) }}" class="form d-inline-block" title="Exluir">
+                                        <a href="{{ route('partidas.play', $partida->id) }}" class="btn btn-primary text-white bi bi-play-fill" title="Jogar partida"></a>
+                                        <a href="" class="btn btn-success bi bi-graph-up" title="Visualizar resultados"></a>
+                                        <form method="POST" action="" class="form d-inline-block" title="Exluir">
                                             @csrf
                                             @method('post')
                                             <input type="hidden" name="_method" value="DELETE">
@@ -36,7 +40,7 @@
                                         </form>
                                     </td>
                                 </tr>
-                                @endforeach
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -44,4 +48,5 @@
             </div>
         </div>
     </div>
+
 @endsection
