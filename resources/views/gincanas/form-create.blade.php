@@ -1,7 +1,5 @@
 @csrf
 <div class="mb-3">
-    @include('layouts.partials.messages')
-
     <label for="titulo" class="form-label">Título</label>
     <input
         type="text"

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Gincana;
 use App\Models\GincanaGrupo;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\DB;
 
 class GincanaGruposController extends Controller
 {
@@ -25,24 +25,34 @@ class GincanaGruposController extends Controller
      *
      * @param Request $request
      * @param Gincana $gincana
+     *
      * @return void
      */
     public function store(Request $request, Gincana $gincana)
     {
-        // Realiza validações
-        $request->validate([
-            'nome' => 'filled',
-            'cor'  => 'filled',
-        ]);
+        try {
+            DB::beginTransaction();
 
-        $ordem = $gincana->grupos->count() + 1;
+            // Validações
+            $request->validate([
+                'nome' => 'filled',
+                'cor'  => 'filled',
+            ]);
 
-        GincanaGrupo::create([
-            'ordem' => $ordem,
-            'nome'  => $request->nome,
-            'cor'   => $request->cor,
-            'gincana_id' => $gincana->id
-        ]);
+            $ordem = $gincana->grupos->count() + 1;
+
+            GincanaGrupo::create([
+                'ordem' => $ordem,
+                'nome'  => $request->nome,
+                'cor'   => $request->cor,
+                'gincana_id' => $gincana->id
+            ]);
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return back()->withErrors(['message' => $th->getMessage()]);
+        }
 
         return redirect()->route('gincanas.edit', ['gincana' => $gincana->id]);
     }
@@ -55,13 +65,22 @@ class GincanaGruposController extends Controller
      */
     public function destroy(GincanaGrupo $gincanaGrupo)
     {
-        $gincana = $gincanaGrupo->gincana;
-        $gincanaGrupo->delete();
+        try {
+            DB::beginTransaction();
 
-        // Reordena grupos
-        $ordem = 1;
-        foreach ($gincana->grupos->sortBy('ordem') as $grupo) {
-            $grupo->update(['ordem' => $ordem++]);
+            $gincana = $gincanaGrupo->gincana;
+            $gincanaGrupo->delete();
+
+            // Reordena grupos
+            $ordem = 1;
+            foreach ($gincana->grupos->sortBy('ordem') as $grupo) {
+                $grupo->update(['ordem' => $ordem++]);
+            }
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return back()->withErrors(['message' => $th->getMessage()]);
         }
 
         return redirect()->route('gincanas.edit', ['gincana' => $gincana->id]);

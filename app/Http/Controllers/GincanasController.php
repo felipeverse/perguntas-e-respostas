@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gincana;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GincanasController extends Controller
 {
@@ -14,7 +15,11 @@ class GincanasController extends Controller
      */
     public function index()
     {
-        $gincanas = Gincana::all();
+        try {
+            $gincanas = Gincana::all();
+        } catch (\Throwable $th) {
+            return back()->withErrors(['message' => $th->getMessage()]);
+        }
 
         return view('gincanas.index', compact('gincanas'));
     }
@@ -38,18 +43,27 @@ class GincanasController extends Controller
      */
     public function store(Request $request)
     {
-        // Realizar validações
-        $request->validate([
-            'titulo'    => 'filled',
-            'descricao' => 'filled',
-        ]);
+        try {
+            DB::beginTransaction();
 
-        Gincana::create([
-            'titulo'    => $request->titulo,
-            'descricao' => $request->descricao,
-        ]);
+            // Validações
+            $request->validate([
+                'titulo'    => 'filled',
+                'descricao' => 'filled',
+            ]);
 
-        return redirect()->route('gincanas.index')->with('success', 'Nível criado com sucesso');
+            Gincana::create([
+                'titulo'    => $request->titulo,
+                'descricao' => $request->descricao,
+            ]);
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return back()->withErrors(['message' => $th->getMessage()]);
+        }
+
+        return redirect()->route('gincanas.index')->with('success', 'Gincana criada com sucesso');
     }
 
     /**
@@ -73,16 +87,25 @@ class GincanasController extends Controller
      */
     public function update(Request $request, Gincana $gincana)
     {
-        // Realizar validações
-        $request->validate([
-            'titulo'    => 'filled',
-            'descricao' => 'filled',
-        ]);
+        try {
+            DB::beginTransaction();
 
-        $gincana->update([
-            'titulo'    => $request->titulo,
-            'descricao' => $request->descricao,
-        ]);
+            // Validações
+            $request->validate([
+                'titulo'    => 'filled',
+                'descricao' => 'filled',
+            ]);
+
+            $gincana->update([
+                'titulo'    => $request->titulo,
+                'descricao' => $request->descricao,
+            ]);
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return back()->withErrors(['message' => $th->getMessage()]);
+        }
 
         return redirect()->route('gincanas.index')->with('success', 'Gincana atualizada com sucesso!');
     }
@@ -96,7 +119,16 @@ class GincanasController extends Controller
      */
     public function destroy(Gincana $gincana)
     {
-        $gincana->delete();
+        try {
+            DB::beginTransaction();
+
+            $gincana->delete();
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return back()->withErrors(['message' => $th->getMessage()]);
+        }
 
         return redirect()->route('gincanas.index')
             ->with('success', 'Gincana excluída com sucesso!');

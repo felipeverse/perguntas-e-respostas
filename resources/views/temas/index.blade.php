@@ -3,6 +3,8 @@
 @section('content')
 
     <div class="container mt-5">
+        @include('layouts.partials.messages')
+
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 Temas
