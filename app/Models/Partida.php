@@ -11,7 +11,7 @@ class Partida extends Model
 
     protected $fillable = [
         'titulo',
-        'encerrada',
+        'finalizada',
         'gincana_id',
     ];
 
@@ -27,7 +27,7 @@ class Partida extends Model
 
     public function getStatusAttribute()
     {
-        return $this->finalziada ? 'FINALIZADA' : $this->jogadas->count()
-            ? 'EM ANDAMENTO' : 'NÃO INICIADA';
+        return $this->finalizada ? 'FINALIZADA' : ($this->jogadas->count()
+            ? 'EM ANDAMENTO' : 'NÃO INICIADA');
     }
 }

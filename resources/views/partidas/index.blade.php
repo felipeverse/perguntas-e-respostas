@@ -32,7 +32,7 @@
                                     <td class="text-end">
                                         <a href="{{ route('partidas.play', $partida->id) }}" class="btn btn-primary text-white bi bi-play-fill" title="Jogar partida"></a>
                                         <a href="" class="btn btn-success bi bi-graph-up" title="Visualizar resultados"></a>
-                                        <form method="POST" action="" class="form d-inline-block" title="Exluir">
+                                        <form method="POST" action="{{ route('partidas.destroy', $partida->id) }}" class="form d-inline-block" title="Exluir">
                                             @csrf
                                             @method('post')
                                             <input type="hidden" name="_method" value="DELETE">

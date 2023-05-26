@@ -104,6 +104,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
             Route::get('create', 'PartidasController@create')->name('create');
             Route::get('play/{partida}', 'PartidasController@play')->name('play');
             Route::post('store', 'PartidasController@store')->name('store');
+            Route::post('store-response/{partida}', 'PartidasController@storeResponse')->name('store-response');
+            Route::delete('/{partida}', 'PartidasController@destroy')->name('destroy');
         });
 
         /**

@@ -31,7 +31,7 @@ class CreatePartidaJogadasTable extends Migration
             $table->unsignedBigInteger('resposta_id');
             $table->foreign('resposta_id')->references('id')->on('respostas');
 
-            $table->enum('tipo', ['E', 'P', 'C']);
+            $table->enum('correta', ['E', 'P', 'C']);
             $table->integer('pergunta_ordem');
             $table->integer('pontuacao');
 

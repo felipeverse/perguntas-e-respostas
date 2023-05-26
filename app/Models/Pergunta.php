@@ -45,10 +45,15 @@ class Pergunta extends Model
 
     public function respostas()
     {
-        return $this->hasMany(Resposta::class);
+        return $this->hasMany(Resposta::class)->inRandomOrder();
     }
 
-    public function perguntaAleatoriaPorFase(GincanaFase $fase, $temaSelecionadoPreviamente = null)
+    public function getRespostaCorretaAttribute()
+    {
+        return $this->respostas()->where('correta', true)->first();
+    }
+
+    public static function perguntaAleatoriaPorFase(GincanaFase $fase, $temaSelecionadoPreviamente = null)
     {
         if (is_null($temaSelecionadoPreviamente)) {
             return self::where('nivel_id', $fase->nivel_id)

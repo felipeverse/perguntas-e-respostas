@@ -13,12 +13,14 @@ class PartidaJogada extends Model
      * The attributes that are mass assignable
      */
     protected $fillable = [
+        'partida_id',
         'fase_id',
         'grupo_id',
         'pergunta_id',
         'resposta_id',
+        'pergunta_ordem',
         'correta',
-        'pontucao',
+        'pontuacao',
     ];
 
     public function fase()
