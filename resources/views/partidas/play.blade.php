@@ -3,8 +3,8 @@
 @section('content')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb mt-2">
-            <li class="breadcrumb-item">Fase #{{ $fase->ordem }}</li>
-            <li class="breadcrumb-item">Rodada #{{ $perguntaOrdem }}</li>
+            <li class="breadcrumb-item">Fase {{ $fase->ordem }} de {{ $fase->gincana->fases->count() }}</li>
+            <li class="breadcrumb-item">Rodada {{ $perguntaOrdem }} de {{ $fase->perguntas_por_grupo }}</li>
         </ol>
     </nav>
 
