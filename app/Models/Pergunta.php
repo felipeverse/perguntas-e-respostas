@@ -53,14 +53,14 @@ class Pergunta extends Model
         return $this->respostas()->where('correta', true)->first();
     }
 
-    public static function perguntaAleatoriaPorFase(GincanaFase $fase, $temaSelecionadoPreviamente = null)
+    public static function perguntaAleatoriaPorFase(GincanaFase $fase, Partida $partida, $temaSelecionadoPreviamente = null)
     {
         if (is_null($temaSelecionadoPreviamente)) {
             return self::where('nivel_id', $fase->nivel_id)
-                // ->where('tipo', $fase->tipo)
+                ->where('tipo', $fase->tipo)
                 ->whereIn('tema_id', $fase->temas->pluck('id'))
-                ->get()
-                ->random();
+                ->whereNotIn('id', $partida->perguntasUtilizadas->pluck('pergunta_id'))
+                ->first();
         }
 
         return self::where('nivel_id', $fase->nivel_id)

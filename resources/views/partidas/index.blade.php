@@ -11,7 +11,6 @@
                 <a href="{{ route('partidas.create') }}" class="btn btn-primary">Nova</a>
             </div>
             <div class="card-body">
-                @include('layouts.partials.messages')
                 <div class="row">
                     <div class="col-md-12">
                         <table class="table table-striped no-top-border">

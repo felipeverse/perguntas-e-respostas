@@ -10,9 +10,9 @@ use App\Models\GincanaFase;
 use App\Models\GincanaGrupo;
 use Illuminate\Http\Request;
 use App\Models\PartidaJogada;
+use App\Models\PerguntaUtilizada;
 use App\Models\Resposta;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 class PartidasController extends Controller
 {
@@ -66,7 +66,16 @@ class PartidasController extends Controller
                 $perguntaOrdem = $jogadaAtual['perguntaOrdem'];
                 $grupo = $jogadaAtual['grupo'];
 
-                $pergunta = Pergunta::perguntaAleatoriaPorFase($jogadaAtual['fase']);
+                $pergunta = Pergunta::perguntaAleatoriaPorFase($jogadaAtual['fase'], $partida);
+
+                if ($pergunta->count() == 0) {
+                    throw new Exception('Não há mais perguntas disponíveis na banca.');
+                };
+
+                // Obtém as respostas relacionadas à pergunta
+                $respostas = $pergunta->respostas;
+                $respostasEmbaralhadas = $respostas->shuffle();
+                $pergunta->setRelation('respostas', $respostasEmbaralhadas);
 
                 return view('partidas.play', compact('partida', 'fase', 'grupo', 'pergunta', 'perguntaOrdem'));
             }
@@ -96,6 +105,7 @@ class PartidasController extends Controller
                 'pergunta-ordem' => 'required',
                 'pergunta-id' => 'required',
                 'resposta-id' => 'sometimes',
+                'ordem-das-respostas' => 'sometimes|array',
                 'resultado' => 'sometimes',
             ]);
 
@@ -133,6 +143,20 @@ class PartidasController extends Controller
                         : $fase->pontuacao_erro
                 ]);
 
+                $perguntaUtilizada = new PerguntaUtilizada([
+                    'partida_id' => $partida->id,
+                    'pergunta_id' => $pergunta->id,
+                ]);
+
+                // Ordena perguntas conforme view de jogada
+                $ordemDasRespostas = $request->input('ordem-das-respostas');
+
+                $pergunta->respostas = $pergunta->respostas->sortBy(function ($resposta) use ($ordemDasRespostas) {
+                    return array_search($resposta->id, $ordemDasRespostas);
+                });
+
+                $perguntaUtilizada->save();
+
                 $jogada->save();
             } else {
                 // Caso resposta seja errada
@@ -163,6 +187,13 @@ class PartidasController extends Controller
                     'correta' => $correta,
                     'pontuacao' => $pontuacao,
                 ]);
+
+                $perguntaUtilizada = new PerguntaUtilizada([
+                    'partida_id' => $partida->id,
+                    'pergunta_id' => $pergunta->id,
+                ]);
+
+                $perguntaUtilizada->save();
 
                 $jogada->save();
             }
