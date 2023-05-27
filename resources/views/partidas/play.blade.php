@@ -28,6 +28,7 @@
                     <div class="respostas" id="respostas">
                         @if ($pergunta->tipo == 'OBJETIVA')
                             @foreach ($pergunta->respostas as $resposta)
+                                <input type="hidden" name="ordem-das-respostas[]" value="{{ $resposta->id }}">
                                 <div class="d-grid gap-2 mb-2" style="line-height: 1;">
                                     <input
                                         type="radio"
