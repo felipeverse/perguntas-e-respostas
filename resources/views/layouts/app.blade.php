@@ -41,8 +41,8 @@
             min-height: 450px;
             height: 100vh;
             margin: 0;
-            /* background: -webkit-radial-gradient(ellipse farthest-corner at center top, #f39264 0%, #f2606f 100%); */
-            /* background: radial-gradient(ellipse farthest-corner at center top, #f39264 0%, #f2606f 100%); */
+            background: -webkit-radial-gradient(ellipse farthest-corner at center top, #ffffff 0%, #e6e6e6 100%);
+            background: radial-gradient(ellipse farthest-corner at center top, #ffffff 0%, #e6e6e6 100%);
             /* color: #fff; */
             font-family: 'Open Sans', sans-serif;
         }
@@ -101,6 +101,7 @@
         }
         .leaderboard ol li {
             position: relative;
+            color: white;
             z-index: 1;
             font-size: 14px;
             counter-increment: leaderboard;
@@ -137,13 +138,14 @@
             background: none;
             color: #fff;
         }
-        .leaderboard ol li mark::before, .leaderboard ol li mark::after {
+        .leaderboard ol li mark::before,
+        .leaderboard ol li mark::after {
             content: '';
             position: absolute;
             z-index: 1;
             bottom: -11px;
             left: -9px;
-            border-top: 10px solid #c24448;
+            border-top: 10px solid #3f72af;
             border-left: 10px solid transparent;
             -webkit-transition: all .1s ease-in-out;
             transition: all .1s ease-in-out;
@@ -169,59 +171,59 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #fa6855;
+            background: #2c5282;
             box-shadow: 0 3px 0 rgba(0, 0, 0, 0.08);
             -webkit-transition: all .3s ease-in-out;
             transition: all .3s ease-in-out;
             opacity: 0;
         }
         .leaderboard ol li:nth-child(1) {
-            background: #fa6855;
+            background: #2c5282;
         }
         .leaderboard ol li:nth-child(1)::after {
-            background: #fa6855;
+            background: #2c5282;
         }
         .leaderboard ol li:nth-child(2) {
-            background: #e0574f;
+            background: #1a365d;
         }
         .leaderboard ol li:nth-child(2)::after {
-            background: #e0574f;
+            background: #1a365d;
             box-shadow: 0 2px 0 rgba(0, 0, 0, 0.08);
         }
         .leaderboard ol li:nth-child(2) mark::before, .leaderboard ol li:nth-child(2) mark::after {
-            border-top: 6px solid #ba4741;
+            border-top: 6px solid #102549;
             bottom: -7px;
         }
         .leaderboard ol li:nth-child(3) {
-            background: #d7514d;
+            background: #0d223f;
         }
         .leaderboard ol li:nth-child(3)::after {
-            background: #d7514d;
+            background: #0d223f;
             box-shadow: 0 1px 0 rgba(0, 0, 0, 0.11);
         }
         .leaderboard ol li:nth-child(3) mark::before, .leaderboard ol li:nth-child(3) mark::after {
-            border-top: 2px solid #b0433f;
+            border-top: 2px solid #091730;
             bottom: -3px;
         }
         .leaderboard ol li:nth-child(4) {
-            background: #cd4b4b;
+            background: #082034;
         }
         .leaderboard ol li:nth-child(4)::after {
-            background: #cd4b4b;
+            background: #082034;
             box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
         }
         .leaderboard ol li:nth-child(4) mark::before, .leaderboard ol li:nth-child(4) mark::after {
             top: -7px;
             bottom: auto;
             border-top: none;
-            border-bottom: 6px solid #a63d3d;
+            border-bottom: 6px solid #061426;
         }
         .leaderboard ol li:nth-child(5) {
-            background: #c24448;
+            background: #041c2c;
             border-radius: 0 0 10px 10px;
         }
         .leaderboard ol li:nth-child(5)::after {
-            background: #c24448;
+            background: #041c2c;
             box-shadow: 0 -2.5px 0 rgba(0, 0, 0, 0.12);
             border-radius: 0 0 10px 10px;
         }
@@ -229,7 +231,23 @@
             top: -9px;
             bottom: auto;
             border-top: none;
-            border-bottom: 8px solid #993639;
+            border-bottom: 8px solid #041c2c;
+        }
+        .leaderboard ol li:nth-child(6) {
+            background: #030a16;
+        }
+
+        .leaderboard ol li:nth-child(6)::after {
+            background: #030a16;
+            box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .leaderboard ol li:nth-child(6) mark::before,
+        .leaderboard ol li:nth-child(6) mark::after {
+            top: -7px;
+            bottom: auto;
+            border-top: none;
+            border-bottom: 6px solid #02060d;
         }
         .leaderboard ol li:hover {
             z-index: 2;

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="leaderboard">
+    <div class="leaderboard m-3">
         <h1>
           <svg class="ico-cup">
             <use xlink:href="#cup"></use>
