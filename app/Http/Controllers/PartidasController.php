@@ -68,7 +68,7 @@ class PartidasController extends Controller
 
                 $pergunta = Pergunta::perguntaAleatoriaPorFase($jogadaAtual['fase'], $partida);
 
-                if ($pergunta->count() == 0) {
+                if (is_null($pergunta) || $pergunta->count() == 0) {
                     throw new Exception('Não há mais perguntas disponíveis na banca.');
                 };
 
@@ -89,7 +89,6 @@ class PartidasController extends Controller
 
             return view('partidas.resultado-partida', compact('grupos'));
         } catch (\Throwable $th) {
-            DB::rollBack();
             return back()->withErrors(['message' => $th->getMessage()]);
         }
     }
