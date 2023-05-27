@@ -27,7 +27,14 @@
                     <p>
                     <div class="respostas" id="respostas">
                         @if ($pergunta->tipo == 'OBJETIVA')
-                            @foreach ($pergunta->respostas as $resposta)
+                            {{-- Inicia indice das letras na posição 0 --}}
+                            @php $indice = 0; @endphp
+
+                            @foreach ($pergunta->respostas as $key => $resposta)
+
+                                {{-- atribui e incremeta letra da resposta --}}
+                                @php $letra = chr(65 + $indice++); @endphp
+
                                 <input type="hidden" name="ordem-das-respostas[]" value="{{ $resposta->id }}">
                                 <div class="d-grid gap-2 mb-2" style="line-height: 1;">
                                     <input
@@ -38,7 +45,9 @@
                                         value="{{ $resposta->id }}"
                                         autocomplete="off"
                                     >
-                                    <label class="btn btn-outline-primary" for="{{ $resposta->id }}">{{ $resposta->texto }}</label>
+                                    <label class="btn btn-outline-primary" for="{{ $resposta->id }}">
+                                        <span class="letra">{{ $letra }}) </span>{{ $resposta->texto }}
+                                    </label>
                                 </div>
                             @endforeach
                         @elseif($pergunta->tipo == 'DISCURSIVA')

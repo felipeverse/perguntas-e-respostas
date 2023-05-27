@@ -14,10 +14,19 @@
                     <strong><p class="card-text">{{ $pergunta->enunciado }}</p></strong>
                 <p>
                 <div>
+
+                {{-- Inicia indice das letras na posição 0 --}}
+                @php $indice = 0; @endphp
+
                 @foreach ($pergunta->respostas as $resposta)
+
+                    {{-- atribui e incremeta letra da resposta --}}
+                    @php $letra = chr(65 + $indice++); @endphp
+
                     @if ($resposta->correta)
                         <div class="d-grid gap-2 mb-2" style="pointer-events:none;">
                             <label class="btn btn-success no-hover" for="{{ $resposta->id }}">
+                                <span class="letra">{{ $letra }}) </span>
                                 {{ $resposta->texto }}
                                 <i class="bi bi-check-circle float-end"></i>
                             </label>
@@ -25,13 +34,17 @@
                     @elseif($resposta->id == $respostaEnviada->id)
                         <div class="d-grid gap-2 mb-2 no-hover" style="pointer-events:none;">
                             <label class="btn btn-outline-danger no-hover" for="{{ $resposta->id }}">
+                                <span class="letra">{{ $letra }}) </span>
                                 {{ $resposta->texto }}
                                 <i class="bi bi-x-circle float-end"></i>
                             </label>
                         </div>
                     @else
                         <div class="d-grid gap-2 mb-2 no-hover" style="pointer-events:none;">
-                            <label class="btn btn-outline-secondary no-hover" for="{{ $resposta->id }}">{{ $resposta->texto }}</label>
+                            <label class="btn btn-outline-secondary no-hover" for="{{ $resposta->id }}">
+                                <span class="letra">{{ $letra }}) </span>
+                                {{ $resposta->texto }}
+                            </label>
                         </div>
                     @endif
                 @endforeach

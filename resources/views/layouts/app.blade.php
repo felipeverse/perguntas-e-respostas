@@ -21,18 +21,24 @@
 
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
-          font-size: 3.5rem;
+            font-size: 3.5rem;
+            }
         }
-      }
 
-      .button-container {
-        display: flex;
-        gap: 5px; /* Espaçamento entre os botões */
-      }
+        .button-container {
+            display: flex;
+            gap: 5px; /* Espaçamento entre os botões */
+        }
 
-      .button-container > * {
-        flex: 1; /* Os botões irão ocupar o mesmo espaço */
-      }
+        .button-container > * {
+            flex: 1; /* Os botões irão ocupar o mesmo espaço */
+        }
+
+        .letra {
+            float: left;
+            margin-right: 5px;
+            margin-left: 5px;
+        }
     </style>
 </head>
 <body>
