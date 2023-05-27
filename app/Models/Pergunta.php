@@ -60,6 +60,7 @@ class Pergunta extends Model
                 ->where('tipo', $fase->tipo)
                 ->whereIn('tema_id', $fase->temas->pluck('id'))
                 ->whereNotIn('id', $partida->perguntasUtilizadas->pluck('pergunta_id'))
+                ->inRandomOrder()
                 ->first();
         }
 

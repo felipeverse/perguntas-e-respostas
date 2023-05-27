@@ -205,7 +205,7 @@ class PartidasController extends Controller
             return back()->withErrors(['message' => $th->getMessage()]);
         }
 
-        return view('partidas.resultado-jogada', compact('partida', 'grupo', 'jogada', 'pergunta', 'respostaEnviada'));
+        return view('partidas.resultado-jogada', compact('partida', 'fase', 'grupo', 'jogada', 'pergunta', 'respostaEnviada', 'perguntaOrdem'));
     }
 
     public function destroy(Partida $partida)
