@@ -11,7 +11,7 @@
             </div>
             <div class="card-body">
                 </p>
-                    <strong><p class="card-text">{{ $pergunta->enunciado }}</p></strong>
+                    <strong><p class="card-text mb-2">{{ $pergunta->enunciado }}</p></strong>
                 <p>
                 <div>
 

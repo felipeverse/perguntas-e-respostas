@@ -23,7 +23,7 @@
                         </div>
                     @endif
                     </p>
-                        <strong><p class="card-text">{{ $pergunta->enunciado }}</p></strong>
+                        <strong><p class="card-text mb-2">{{ $pergunta->enunciado }}</p></strong>
                     <p>
                     <div class="respostas" id="respostas">
                         @if ($pergunta->tipo == 'OBJETIVA')
@@ -58,7 +58,7 @@
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingOne">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Resposta
+                                            Resposta
                                         </button>
                                     </h2>
                                     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionResposta">
