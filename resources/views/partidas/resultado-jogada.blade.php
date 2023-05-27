@@ -16,18 +16,22 @@
                 <div>
                 @foreach ($pergunta->respostas as $resposta)
                     @if ($resposta->correta)
-                        <div class="alert d-flex align-items-center justify-content-between alert-success" role="alert" style="line-height: 1;">
-                            <div> {{ $resposta->texto }} </div>
-                            <i class="bi bi-check-circle-fill"></i>
+                        <div class="d-grid gap-2 mb-2" style="pointer-events:none;">
+                            <label class="btn btn-success no-hover" for="{{ $resposta->id }}">
+                                {{ $resposta->texto }}
+                                <i class="bi bi-check-circle float-end"></i>
+                            </label>
                         </div>
                     @elseif($resposta->id == $respostaEnviada->id)
-                        <div class="alert d-flex align-items-center justify-content-between alert-danger" role="alert" style="line-height: 1;">
-                            <div> {{ $resposta->texto }} </div>
-                            <i class="bi bi-x-circle-fill"></i>
+                        <div class="d-grid gap-2 mb-2 no-hover" style="pointer-events:none;">
+                            <label class="btn btn-outline-danger no-hover" for="{{ $resposta->id }}">
+                                {{ $resposta->texto }}
+                                <i class="bi bi-x-circle float-end"></i>
+                            </label>
                         </div>
                     @else
-                        <div class="alert d-flex align-items-center justify-content-between alert-secondary" role="alert" style="line-height: 1;">
-                            <div> {{ $resposta->texto }} </div>
+                        <div class="d-grid gap-2 mb-2 no-hover" style="pointer-events:none;">
+                            <label class="btn btn-outline-secondary no-hover" for="{{ $resposta->id }}">{{ $resposta->texto }}</label>
                         </div>
                     @endif
                 @endforeach

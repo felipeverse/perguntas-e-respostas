@@ -29,8 +29,8 @@ class Pergunta extends Model
      * @var array
      */
     public const TIPOS = [
-        'DISCURSIVA',
         'OBJETIVA',
+        'DISCURSIVA',
     ];
 
     public function nivel()
@@ -57,12 +57,14 @@ class Pergunta extends Model
     {
         if (is_null($temaSelecionadoPreviamente)) {
             return self::where('nivel_id', $fase->nivel_id)
+                // ->where('tipo', $fase->tipo)
                 ->whereIn('tema_id', $fase->temas->pluck('id'))
                 ->get()
                 ->random();
         }
 
         return self::where('nivel_id', $fase->nivel_id)
+            ->where('tipo', $fase->tipo)
             ->where('tema_id', $temaSelecionadoPreviamente)
             ->get()
             ->random();

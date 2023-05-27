@@ -74,13 +74,15 @@ class PartidasController extends Controller
             // Finaliza partida
             $partida->finalizada = 1;
             $partida->save();
+            $partida->refresh();
 
+            $grupos = $partida->getGruposByPontuacao();
+
+            return view('partidas.resultado-partida', compact('grupos'));
         } catch (\Throwable $th) {
             DB::rollBack();
             return back()->withErrors(['message' => $th->getMessage()]);
         }
-
-        return view('partidas.resultado-partida', compact('partida'));
     }
 
     public function storeResponse(Request $request, Partida $partida)
@@ -93,7 +95,8 @@ class PartidasController extends Controller
                 'grupo-id' => 'required',
                 'pergunta-ordem' => 'required',
                 'pergunta-id' => 'required',
-                'resposta-id' => 'required',
+                'resposta-id' => 'sometimes',
+                'resultado' => 'sometimes',
             ]);
 
             // Valida se jogada recebida é integra com a jogada atual
@@ -132,7 +135,36 @@ class PartidasController extends Controller
 
                 $jogada->save();
             } else {
-                // dd(__CLASS__, __LINE__, "Discursiva");
+                // Caso resposta seja errada
+                if ($request->input('resultado') === 'errado') {
+                    $correta = 'E';
+                    $pontuacao = $fase->pontuacao_erro;
+                }
+
+                // Caso resposta seja parcial
+                if ($request->input('resultado') == 'acerto-parcial') {
+                    $correta = 'P';
+                    $pontuacao = $fase->pontuacao_parcial;
+                }
+
+                // Caso resposta seja certa
+                if ($request->input('resultado') == 'correta') {
+                    $correta = 'C';
+                    $pontuacao = $fase->pontuacao_acerto;
+                }
+
+                $jogada = new PartidaJogada([
+                    'partida_id' => $partida->id,
+                    'fase_id' => $fase->id,
+                    'grupo_id' => $grupo->id,
+                    'pergunta_id' => $pergunta->id,
+                    'resposta_id' => $respostaEnviada->id,
+                    'pergunta_ordem' => $perguntaOrdem,
+                    'correta' => $correta,
+                    'pontuacao' => $pontuacao,
+                ]);
+
+                $jogada->save();
             }
 
             DB::commit();

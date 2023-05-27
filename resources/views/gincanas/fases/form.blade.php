@@ -1,4 +1,5 @@
 @csrf
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="mb-3">
     {{-- Niveis --}}
     <label for="nivel" class="form-label">Nível das perguntas</label>
@@ -7,6 +8,17 @@
         @foreach ($niveis as $nivel)
             <option value="{{ $nivel->id }}">
                 {{ $nivel->titulo }}
+            </option>
+        @endforeach
+    </select>
+
+    {{-- Tipo pergunta --}}
+    <label for="tipo" class="form-label">Tipo das perguntas</label>
+    <select class="form-select mb-3" id="tipo" name="tipo" required>
+        <option value="" selected>Selecione um tipo</option>
+        @foreach ($tipos as $tipo)
+            <option value="{{ $tipo }}">
+                {{ $tipo }}
             </option>
         @endforeach
     </select>

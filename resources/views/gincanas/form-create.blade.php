@@ -16,7 +16,6 @@
         class="form-control @error('descricao') is-invalid @enderror mb-3"
         id="descricao"
         name="descricao"
-        required
     >{{ old('descricao', isset($gincana) ? $gincana->descricao : '') }}</textarea>
 
     @error('name')

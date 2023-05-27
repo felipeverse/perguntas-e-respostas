@@ -36,10 +36,30 @@
                                 </div>
                             @endforeach
                         @elseif($pergunta->tipo == 'DISCURSIVA')
+                            {{-- Resposta --}}
+                            <input type="hidden" name="resposta-id" value="{{ $pergunta->respostaCorreta->id }}">
+                            <div class="accordion mb-2" id="accordionResposta">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Resposta
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionResposta">
+                                        <div class="accordion-body">
+                                            <strong>{{ $pergunta->respostaCorreta->texto  }}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- Resposta --}}
                             <div class="d-grid gap-2 mb-2" style="line-height: 1;">
                                 <input type="radio" class="btn-check" name="resultado" id="errado" value="errado" autocomplete="off">
                                 <label class="btn btn-outline-danger" for="errado">Resposta errada</label>
                             </div>
+
+
                             @if($fase->pontuacao_parcial)
                                 <div class="d-grid gap-2 mb-2" style="line-height: 1;">
                                     <input type="radio" class="btn-check" name="resultado" id="acerto-parcial" value="acerto-parcial" autocomplete="off">

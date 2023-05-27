@@ -21,6 +21,7 @@ class CreateGincanaFasesTable extends Migration
             $table->integer('pontuacao_acerto');
             $table->integer('perguntas_por_grupo');
             $table->boolean('selecionar_tema_manualmente');
+            $table->enum('tipo', ['DISCURSIVA', 'OBJETIVA']);
 
             $table->unsignedBigInteger('gincana_id');
             $table->foreign('gincana_id')->references('id')->on('gincanas');

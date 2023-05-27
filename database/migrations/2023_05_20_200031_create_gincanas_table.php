@@ -16,7 +16,7 @@ class CreateGincanasTable extends Migration
         Schema::create('gincanas', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
-            $table->text('descricao');
+            $table->text('descricao')->nullable();
             $table->timestamps();
         });
     }

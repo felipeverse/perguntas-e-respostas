@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\GincanaGrupo;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -23,6 +25,18 @@ class Partida extends Model
     public function jogadas()
     {
         return $this->hasMany(PartidaJogada::class, 'partida_id');
+    }
+
+    public function getGruposByPontuacao()
+    {
+        $grupos = GincanaGrupo::select('gincana_grupos.*', DB::raw('SUM(partida_jogadas.pontuacao) as pontuacao_total'))
+            ->join('partida_jogadas', 'gincana_grupos.id', '=', 'partida_jogadas.grupo_id')
+            ->where('partida_jogadas.partida_id', $this->id)
+            ->groupBy('gincana_grupos.id')
+            ->orderBy('pontuacao_total', 'desc')
+            ->get();
+
+        return $grupos;
     }
 
     public function getStatusAttribute()

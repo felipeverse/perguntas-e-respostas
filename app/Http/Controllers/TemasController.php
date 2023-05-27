@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tema;
 use App\Models\Nivel;
+use App\Models\Pergunta;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -117,12 +118,17 @@ class TemasController extends Controller
             ->with('success', 'Tema excluído com sucesso!');
     }
 
-    public function temasPartialView(Nivel $nivel)
+    public function temasPartialView(Request $request, Nivel $nivel)
     {
         try {
             DB::beginTransaction();
 
-            $temas = Tema::whereIn('id', $nivel->perguntas->pluck('tema_id')->toArray())->get();
+            $dados = $request->json()->all();
+            $tipo = $dados['tipo'];
+
+            $temas = Tema::whereIn('id', $nivel->perguntas->pluck('tema_id')->toArray())
+                ->whereIn('id', Pergunta::where('tipo', $tipo)->pluck('tema_id'))
+                ->get();
 
             DB::commit();
         } catch (\Throwable $th) {
@@ -132,6 +138,6 @@ class TemasController extends Controller
             return response()->json(['error' => $errorMessage], Response::HTTP_BAD_REQUEST);
         }
 
-        return view('gincanas.fases.partials.temas', compact('temas'));
+        return view('gincanas.fases.partials.temas', compact('temas'))->render();
     }
 }

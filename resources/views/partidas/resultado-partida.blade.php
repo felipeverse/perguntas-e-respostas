@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    @foreach ($partida->gincana->grupos as $grupo)
-        Pontuação {{ $grupo->nome }}: {{ $grupo->pontuacaoPorPartida($partida); }}
+    @foreach ($grupos as $grupo)
+        <div>
+            {{ $grupo->nome }} : {{ $grupo->pontuacao_total }}
+        </div>
     @endforeach
-
- {{ dd($partida->jogadas) }}
 @endsection

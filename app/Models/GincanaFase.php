@@ -25,6 +25,7 @@ class GincanaFase extends Model
         'selecionar_tema_manualmente',
         'gincana_id',
         'nivel_id',
+        'tipo',
     ];
 
     public function gincana()

@@ -49,7 +49,7 @@ class GincanasController extends Controller
             // Validações
             $request->validate([
                 'titulo'    => 'filled',
-                'descricao' => 'filled',
+                'descricao' => 'sometimes',
             ]);
 
             Gincana::create([
@@ -93,7 +93,7 @@ class GincanasController extends Controller
             // Validações
             $request->validate([
                 'titulo'    => 'filled',
-                'descricao' => 'filled',
+                'descricao' => 'sometimes',
             ]);
 
             $gincana->update([

@@ -21,4 +21,4 @@
     </select>
 </div>
 <button type="submit" class="btn btn-primary">Salvar</button>
-<a href="" class="btn btn-secondary">Cancelar</a>
+<a href="{{ route('partidas.index') }}" class="btn btn-secondary">Cancelar</a>
