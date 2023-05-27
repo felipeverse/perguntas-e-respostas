@@ -17,6 +17,11 @@
                     {{ $grupo->nome }}
                 </div>
                 <div class="card-body">
+                    @if ($pergunta->tipo == 'DISCURSIVA')
+                        <div class="alert alert-primary" role="alert">
+                           Tema: {{ $pergunta->tema->titulo }}
+                        </div>
+                    @endif
                     </p>
                         <strong><p class="card-text">{{ $pergunta->enunciado }}</p></strong>
                     <p>
@@ -37,6 +42,7 @@
                             @endforeach
                         @elseif($pergunta->tipo == 'DISCURSIVA')
                             {{-- Resposta --}}
+
                             <input type="hidden" name="resposta-id" value="{{ $pergunta->respostaCorreta->id }}">
                             <div class="accordion mb-2" id="accordionResposta">
                                 <div class="accordion-item">
